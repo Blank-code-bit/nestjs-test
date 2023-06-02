@@ -3,7 +3,7 @@ import { RestaurantService } from './restaurant.service';
 import { RestaurantEntity } from './restaurant.entity';
 import { RestaurantInput } from './dto/restaurant.input';
 
-@Resolver()
+@Resolver(() => RestaurantEntity)
 export class RestaurantResolver {
   constructor(readonly restaurantService: RestaurantService) {}
 

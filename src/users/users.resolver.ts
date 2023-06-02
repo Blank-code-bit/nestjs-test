@@ -4,7 +4,7 @@ import { UsersEntity } from './users.entity';
 import { UsersDto } from './dto/users.dto';
 import { UserCreateInput } from './dto/users.input';
 
-@Resolver()
+@Resolver(() => UsersEntity)
 export class UsersResolver {
   constructor(readonly userService: UsersService) {}
 
@@ -13,8 +13,8 @@ export class UsersResolver {
     return await this.userService.createOneUser(input);
   }
 
-  @Query(() => UsersEntity, { name: 'getAllUsers' })
-  findAll() {
+  @Query(() => UsersDto, { name: 'getAllUsers' })
+  findAllUser() {
     return this.userService.findAll();
   }
 }

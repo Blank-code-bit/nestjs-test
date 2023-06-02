@@ -1,4 +1,4 @@
-import { Field, Int } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { RestaurantEntity } from 'src/restaurant/restaurant.entity';
 import { UsersEntity } from 'src/users/users.entity';
 import {
@@ -7,13 +7,21 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  RelationId,
 } from 'typeorm';
 
+@ObjectType()
 @Entity()
 export class OrderEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
+  @Field()
+  id: string;
+
+  @Field()
+  @Column()
   food: string;
 
+  @Field()
   @Column()
   drink: string;
 
@@ -39,4 +47,8 @@ export class OrderEntity {
   )
   @JoinColumn()
   restaurant: RestaurantEntity;
+
+  @Column('uuid')
+  @RelationId((entity: OrderEntity) => entity.user)
+  userId: string;
 }

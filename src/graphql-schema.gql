@@ -1,0 +1,64 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type OrderEntity {
+  id: String!
+  food: String!
+  drink: String!
+  foodAmount: Int!
+  drinkAmount: Int!
+  price: Int!
+}
+
+type RestaurantEntity {
+  name: String!
+  address: String!
+  photo: String!
+}
+
+type User {
+  fullName: String!
+  email: String!
+  password: String!
+  phoneNumber: Float!
+  address: String!
+}
+
+type Query {
+  getAllRestaurant: RestaurantEntity!
+  orders(id: String!): OrderEntity!
+  getAllOrders(id: String!): [OrderEntity!]!
+  getNasiLemak(food: String!): [OrderEntity!]!
+  getAllOrdersWithName(id: String!, fullName: String!): [OrderEntity!]!
+  getAllUsers: User!
+}
+
+type Mutation {
+  create(input: RestaurantInput!): RestaurantEntity!
+  createOrder(input: OrderInput!): OrderEntity!
+  signUp(input: UserCreateInput!): User!
+}
+
+input RestaurantInput {
+  name: String!
+  address: String!
+  photo: String!
+}
+
+input OrderInput {
+  food: String!
+  drink: String!
+  foodAmount: Int!
+  drinkAmount: Int!
+  price: Int!
+  userId: String!
+}
+
+input UserCreateInput {
+  fullName: String!
+  email: String!
+  password: String!
+  phoneNumber: String!
+  address: String!
+}

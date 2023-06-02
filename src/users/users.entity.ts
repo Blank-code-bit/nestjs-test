@@ -4,7 +4,10 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class UsersEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
   fullName: string;
 
   @Column({ unique: true })
@@ -21,10 +24,4 @@ export class UsersEntity {
 
   @OneToMany(() => OrderEntity, (orderEntity) => orderEntity.user)
   orders: OrderEntity[];
-
-  @OneToMany(
-    () => RestaurantEntity,
-    (restaurantEntity) => restaurantEntity.user,
-  )
-  restaurants: RestaurantEntity[];
 }

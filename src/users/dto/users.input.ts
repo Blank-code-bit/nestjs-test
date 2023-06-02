@@ -22,6 +22,11 @@ export class UserInput {
   @IsString()
   @IsNotEmpty()
   phoneNumber: number;
+
+  @Field(() => String)
+  @IsString()
+  @IsNotEmpty()
+  address: string;
 }
 
 @InputType('UserCreateInput')

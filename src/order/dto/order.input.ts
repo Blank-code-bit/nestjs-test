@@ -14,17 +14,18 @@ export class OrderInput {
   drink: string;
 
   @Field(() => Int)
-  @IsString()
   @IsNotEmpty()
   foodAmount: number;
 
   @Field(() => Int)
-  @IsString()
   @IsNotEmpty()
   drinkAmount: number;
 
   @Field(() => Int)
-  @IsString()
   @IsNotEmpty()
   price: number;
+
+  @Field()
+  @IsNotEmpty()
+  userId: string;
 }

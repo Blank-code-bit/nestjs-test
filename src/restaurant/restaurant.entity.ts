@@ -1,3 +1,4 @@
+import { Field, ObjectType } from '@nestjs/graphql';
 import { OrderEntity } from 'src/order/order.entity';
 import { UsersEntity } from 'src/users/users.entity';
 import {
@@ -9,20 +10,23 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
+@ObjectType()
 @Entity()
 export class RestaurantEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Field()
+  @Column()
   name: string;
 
+  @Field()
   @Column()
   address: string;
 
+  @Field()
   @Column()
   photo: string;
-
-  @ManyToOne(() => UsersEntity, (userEntity) => userEntity.restaurants)
-  @JoinColumn()
-  user: UsersEntity[];
 
   @OneToMany(() => OrderEntity, (orderEntity) => orderEntity.restaurant)
   @JoinColumn()
